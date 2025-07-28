@@ -87,9 +87,9 @@ func (h *CampaignController) UpdateCampaign(c *gin.Context) {
 		return
 	}
 
-	userData := c.MustGet("userID").(model.User)
+	userID := uint(c.MustGet("userID").(int)) 
 
-	updatedCampaign, err := h.campaignService.Update(id, input, userData.ID)
+	updatedCampaign, err := h.campaignService.Update(id, input, userID)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
