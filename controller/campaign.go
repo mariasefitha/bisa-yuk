@@ -98,9 +98,9 @@ func (h *CampaignController) UpdateCampaign(c *gin.Context) {
 }
 
 // DELETE /campaigns/:id
-func (h *CampaignController) DeleteCampaign(c *gin.Context) {
+func (h *CampaignController) DeleteCampaign(c *gin.Context, campaignID int, userID int) {
 	id, _ := strconv.Atoi(c.Param("id"))
-	userData := c.MustGet("userID").(uint)
+	userData := c.MustGet("userID").(int)
 
 	err := h.campaignService.Delete(id, userData)
 	if err != nil {
